@@ -105,6 +105,17 @@ def single_post(request, id):
         return Response(data={"message": "Error"})
 
 
+@api_view(['PUT'])
+def update_post(request, idx):
+    post_obj = post.objects.get(id=idx)
+    if post_obj:
+        serializer = post_serializer(instance=post_obj, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(data=serializer.data)
+    else:
+        return Response(date={"message": "Data Not Found"})
+    
 
 
 
