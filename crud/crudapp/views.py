@@ -92,6 +92,20 @@ def post_model(request):
     )
 
 
+@api_view(['GET'])
+def single_post(request, id):
+    post_obj = post.objects.get(id=id)
+    
+    if post_obj:
+        
+        serializer = post_serializer(post_obj)
+        
+        return Response(serializer.data)
+    else:
+        return Response(data={"message": "Error"})
+
+
+
 
 
 
