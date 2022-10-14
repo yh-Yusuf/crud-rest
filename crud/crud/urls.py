@@ -22,5 +22,7 @@ urlpatterns = [
     path('', home , name='home'),
     path('post_model/' , post_model, name = 'post_model'),
     path('get_model/', get_model , name= 'get_model'),
-    path('delete_all/', delete_all , name= 'delete_all')
+    path('delete_all/', delete_all , name= 'delete_all'),
+    path('getPost/<int:id>', single_post, name='single_post'),
+
 ]
