@@ -46,7 +46,7 @@ def get_model(request):
 @api_view(['DELETE'])
 def delete_all(request):
     post_objs = post.objects.all().delete()
-    # serializer = post_serializer(post_objs, many=True)
+    serializer = post_serializer(post_objs, many=True)
 
     return Response({
         "status" : True,
@@ -95,28 +95,32 @@ def post_model(request):
 @api_view(['GET'])
 def single_post(request, id):
     post_obj = post.objects.get(id=id)
-    
     if post_obj:
-        
         serializer = post_serializer(post_obj)
-        
         return Response(serializer.data)
     else:
         return Response(data={"message": "Error"})
 
 
-@api_view(['PUT'])
-def update_post(request, idx):
+@api_view(['DELETE'])
+def delete_post(request, idx):
     post_obj = post.objects.get(id=idx)
+
     if post_obj:
-        serializer = post_serializer(instance=post_obj, data=request.data)
+        post_obj.delete()
+        return Response(data={"message": "Deleted Successfully"})
+    else:
+        return Response(date={"message": "Found Nothing to Delete"})
+
+
+@api_view(['PUT'])
+def update_post(request, id):
+    post_obj = post.objects.get(id=id)
+    if post_obj:
+        data = request.data
+        serializer = post_serializer(instance=post_obj, data=data)
         if serializer.is_valid():
             serializer.save()
             return Response(data=serializer.data)
     else:
         return Response(date={"message": "Data Not Found"})
-    
-
-
-
-
