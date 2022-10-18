@@ -14,3 +14,9 @@ class post(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()
 
+    keywords = models.CharField(max_length=100)
+    created_on = models.DateTimeField(auto_now_add=True , null= True)
+
+
+
+
