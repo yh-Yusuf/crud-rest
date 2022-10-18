@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from .serializer import *
 from .models import *
 
-@api_view(['POST' , 'GET' , 'PATCH'])
+@api_view(['GET'])
 def home(request):
     if request.method =='GET':
          return Response(
@@ -13,24 +13,7 @@ def home(request):
                  'message': 'success GET method'
              }
          )
-    elif request.method =='POST':
-         return Response(
-             {   'status':200,
-                 'message': 'success POST method'
-             }
-         )
-    elif request.method =='PATCH':
-         return Response(
-             {   'status':200,
-                 'message': 'success PATCH method'
-             }
-         )
-    else:
-         return Response(
-             {   'status':200,
-                 'message': 'invalid method'
-             }
-         )
+
 
 @api_view(['GET'])
 def get_model(request):
@@ -51,7 +34,6 @@ def delete_all(request):
     return Response({
         "status" : True,
         "message": "posts deleted",
-        # "data" : serializer.data
     })
 
 
@@ -103,8 +85,8 @@ def single_post(request, id):
 
 
 @api_view(['DELETE'])
-def delete_post(request, idx):
-    post_obj = post.objects.get(id=idx)
+def delete_post(request, id):
+    post_obj = post.objects.get(id=id)
 
     if post_obj:
         post_obj.delete()
@@ -124,3 +106,5 @@ def update_post(request, id):
             return Response(data=serializer.data)
     else:
         return Response(date={"message": "Data Not Found"})
+
+
