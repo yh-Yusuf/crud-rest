@@ -17,6 +17,12 @@ class post_serializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Invalid Data")
         else:
             return data
+        
+    def validate(self, data):
+        if len(data["content"]) < 10 and len(data["content"]) > 100:
+            raise serializers.ValidationError("Invalid Data")
+        else:
+            return data    
 
     class Meta:
         model = post
