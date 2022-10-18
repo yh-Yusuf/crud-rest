@@ -5,20 +5,23 @@ import requests
 
 
 class post_serializer(serializers.ModelSerializer):
+
+    def validate(self, data):
+        if (data.get('title') == ""):
+            raise serializers.ValidationError("Invalid Data")
+        else:
+            return data
+
+    def validate(self, data):
+        if len(data["keywords"]) < 3:
+            raise serializers.ValidationError("Length less")
+        return data
+
     class Meta:
         model = post
         fields = ['title', 'content', 'keywords', 'created_on']
 
-        def validate_title(self, data):
-            if (data.get('title') == ""):
-                raise serializers.ValidationError("Invalid Data")
-            else:
-                return data
 
-        def validate_words(self, data):
-            if len(data["keywords"]) < 3:
-                raise serializers.ValidationError("Length less")
-            return data
 
             # print(validated_data["words"])
 
@@ -35,3 +38,10 @@ class post_serializer(serializers.ModelSerializer):
             #
             # return validated_data
 
+
+            
+            
+            
+            
+            
+            
