@@ -17,6 +17,8 @@ class post(models.Model):
     keywords = models.CharField(max_length=100)
     created_on = models.DateTimeField(auto_now_add=True , null= True)
 
+    image = models.FileField(upload_to="images/", blank=True, null=True)
+
 
 
 
