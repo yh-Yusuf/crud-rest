@@ -7,20 +7,14 @@ import requests
 class post_serializer(serializers.ModelSerializer):
 
     def validate(self, data):
-        if (data.get('title') == ""):
-            raise serializers.ValidationError("Invalid Data")
-        else:
-            return data
-        
-    def validate_content(self , data):
-        if len(data['content']) < 100:
+        if (data['title'] == ""):
             raise serializers.ValidationError("Invalid Data")
         else:
             return data
 
     def validate(self, data):
-        if len(data["keywords"]) < 1:
-            raise serializers.ValidationError("Length less")
+        if len(data["keywords"]) < 10:
+            raise serializers.ValidationError("Invalid Data")
         else:
             return data
 
