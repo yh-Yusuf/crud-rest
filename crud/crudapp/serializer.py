@@ -11,11 +11,18 @@ class post_serializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Invalid Data")
         else:
             return data
+        
+    def validate_content(self , data):
+        if len(data['content']) < 100:
+            raise serializers.ValidationError("Invalid Data")
+        else:
+            return data
 
     def validate(self, data):
-        if len(data["keywords"]) < 3:
+        if len(data["keywords"]) < 1:
             raise serializers.ValidationError("Length less")
-        return data
+        else:
+            return data
 
     class Meta:
         model = post
@@ -38,10 +45,3 @@ class post_serializer(serializers.ModelSerializer):
             #
             # return validated_data
 
-
-            
-            
-            
-            
-            
-            
