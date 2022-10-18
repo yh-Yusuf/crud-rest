@@ -30,6 +30,7 @@ class post_serializer(serializers.ModelSerializer):
 
 
 
+        
             # print(validated_data["words"])
 
             # words_obj = validated_data['words']
