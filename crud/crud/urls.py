@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, re_path
 from crudapp.views import *
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home , name='home'),
@@ -24,7 +25,7 @@ urlpatterns = [
     path('get_model/', get_model , name= 'get_model'),
     path('delete_all/', delete_all , name= 'delete_all'),
     path('getPost/<int:id>', single_post, name='single_post'),
-    path('update/<int:idx>', update_post, name='update_post'),
-
+    path('delete_post/<int:id>', delete_post, name='delete_post'),
+    path('update/<int:id>', update_post, name='update_post'),
 
 ]
