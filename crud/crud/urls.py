@@ -30,3 +30,10 @@ urlpatterns = [
     path('update/<int:id>', update_post, name='update_post'),
 
 ] +static(settings.MEDIA_URL , document_root = settings.MEDIA_ROOT)
+
+
+
+
+
+
+
