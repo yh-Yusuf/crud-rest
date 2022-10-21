@@ -17,7 +17,7 @@ class post_serializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Invalid Data")
         else:
             return data
-    #
+    
     # def validate(self, data):
     #     if len(data["content"]) < 10 and len(data["content"]) > 100:
     #         raise serializers.ValidationError("Invalid Data")
@@ -30,7 +30,7 @@ class post_serializer(serializers.ModelSerializer):
 
 
 
-        
+        '''To check the string contains special character or not'''
             # print(validated_data["words"])
 
             # words_obj = validated_data['words']
